@@ -25,23 +25,47 @@ public class GBLinkedList<T> implements GBList<T> {
         size++;
     }
 
+    public void addFirst(T elem) {
+        Node<T> element = new Node<>(elem, null);
+        if (headList == null){
+            headList = element;
+        } else {
+            element.next = headList;
+            headList = element;
+        }
+        size++;
+    }
+
     private Node<T> check(Node<T> node){
         if (node.next == null){
             return node;
         } else{
             return check(node.next);
         }
-
     }
 
     @Override
     public void remove(int index) {
-
+        if (index == 0){
+            Node<T> temp = check(headList, 1);
+            headList = temp;
+        }else{
+            Node<T> temp1 = check(headList, index - 1);
+            Node<T> temp2 = check(headList, index);
+            temp1.next = temp2.next;
+        }
     }
-
     @Override
     public T get(int index) {
-        return null;
+        return check(headList, index).value;
+    }
+
+    private Node<T> check(Node<T> node, int index){
+        if (index == 0){
+            return node;
+        } else{
+            return check(node.next, index - 1);
+        }
     }
 
     @Override
