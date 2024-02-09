@@ -9,12 +9,15 @@ public class Main {
         list.add("Hello");
         list.add("Bonjour");
         list.add("Ola");
-        System.out.println(list);
+        //System.out.println(list);
         //System.out.println(list.size());
         //System.out.println(list.get(3));
-        list.remove(2);
+        //list.remove(2);
         //list.addFirst(1);
-        System.out.println(list);
-        System.out.println(list.size());
+        //System.out.println(list);
+        //System.out.println(list.size());
+        for (String s: list) {
+            System.out.println(s);
+        }
     }
 }

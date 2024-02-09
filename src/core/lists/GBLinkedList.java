@@ -78,7 +78,20 @@ public class GBLinkedList<T> implements GBList<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new Iterator<T>() {
+            int index = 0;
+            @Override
+            public boolean hasNext() {
+                return index < size;
+            }
+
+            @Override
+            public T next() {
+                Node<T> temp = check(headList, index);
+                index++;
+                return temp.value;
+            }
+        };
     }
 
     @Override
