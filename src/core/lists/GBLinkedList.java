@@ -2,6 +2,8 @@ package core.lists;
 
 import core.GBList;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 
 public class GBLinkedList<T> implements GBList<T> {
@@ -54,6 +56,7 @@ public class GBLinkedList<T> implements GBList<T> {
             Node<T> temp2 = check(headList, index);
             temp1.next = temp2.next;
         }
+        size--;
     }
     @Override
     public T get(int index) {
@@ -80,9 +83,10 @@ public class GBLinkedList<T> implements GBList<T> {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(printNode(headList)).reverse();
-        builder.insert(0, "[");
+        StringBuilder builder = new StringBuilder("[");
+        String[] elements = printNode(headList).split(" ");
+        Collections.reverse(Arrays.asList(elements));
+        builder.append(String.join(", ", elements));
         builder.append("]");
         return builder.toString();
     }
@@ -90,7 +94,7 @@ public class GBLinkedList<T> implements GBList<T> {
         if (node.next == null){
             return node.toString();
         }
-        return printNode(node.next) + " ," + node;
+        return printNode(node.next) + " " + node;
     }
 
     private static class Node<T>{
